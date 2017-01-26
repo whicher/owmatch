@@ -1,6 +1,7 @@
 var _TOKEN_URL = 'https://eu.api.battle.net/account/user?access_token=';
-var _SERVER_DOMAIN = 'localhost:5000';
-var _API_PATH = 'http://' + _SERVER_DOMAIN + '/api/get_token/';
+var _DEV_SERVER_DOMAIN = 'localhost:5000';
+var _PROD_SERVER_DOMAIN = '89.100.176.29:5000';
+var _API_PATH = 'http://' + _PROD_SERVER_DOMAIN + '/api/get_token/';
 
 $( document ).ready(function() {
     console.log( "ready!" );
