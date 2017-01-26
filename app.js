@@ -17,29 +17,37 @@ $( document ).ready(function() {
       var authCode = params['code'];
       // Request the access token.
       if (params['code']) {
-        $.ajax({
-          url: _API_PATH + authCode,
-          method: 'GET',
-          success: function (data) {
-            console.log('success: ');
-            console.log(data);
-            if (data.token_type) {
-              $.ajax({
-                url: _TOKEN_URL + data.access_token,
-                method: 'GET',
-                success: function (data) {
-                  console.log('success: ');
-                  console.log(data);
-                  $('#p-login').hide();
-                  $('#p-battletag').text('Logged in as ' + data.battletag);
-                }
-              });
-            }
-          }
-        });
+        getAccessToken(authCode);
       }
     }
 });
+
+function getAccessToken(authCode) {
+  $.ajax({
+    url: _API_PATH + authCode,
+    method: 'GET',
+    success: function (data) {
+      console.log('success: ');
+      console.log(data);
+      if (data.token_type) {
+        getBattleTag(data);
+      }
+    }
+  });
+}
+
+function getBattleTag(data) {
+  $.ajax({
+    url: _TOKEN_URL + data.access_token,
+    method: 'GET',
+    success: function (data) {
+      console.log('success: ');
+      console.log(data);
+      $('#p-login').hide();
+      $('#p-battletag').text('Logged in as ' + data.battletag);
+    }
+  });
+}
 
 function getJsonFromUrl() {
   console.log('getJsonFromUrl');
