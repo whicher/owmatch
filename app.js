@@ -1,7 +1,7 @@
 var _TOKEN_URL = 'https://eu.api.battle.net/account/user?access_token=';
-var _DEV_SERVER_DOMAIN = 'localhost:5000';
-var _PROD_SERVER_DOMAIN = 'api.owmatch.me';
-var _API_PATH = 'http://' + _PROD_SERVER_DOMAIN + '/api/get_token/';
+var _DEV_SERVER_DOMAIN = 'http://localhost:5000';
+var _PROD_SERVER_DOMAIN = 'https://api.owmatch.me';  // Must be https in prod.
+var _API_PATH = _PROD_SERVER + '/api/get_token/';
 
 $( document ).ready(function() {
     console.log( "ready!" );
