@@ -5,6 +5,7 @@ var _API_PATH = _PROD_SERVER + '/api/get_token/';
 
 $( document ).ready(function() {
     console.log( "ready!" );
+    updateUiForLoggedOutUser();
 
     var cookieBattletag = getCookie('battletag');
     if (cookieBattletag) {
@@ -71,6 +72,16 @@ function updateUiForLoggedInUser(battletag) {
       + '" target="_blank">'
       + battletag
       + '</a></b>');
+  $('#btn-logout').show();
+}
+
+function updateUiForLoggedOutUser() {
+  $('#btn-logout').hide();
+}
+
+function logout() {
+  setCookie('battletag', '', 0);
+  updateUiForLoggedOutUser();
 }
 
 function getJsonFromUrl() {
