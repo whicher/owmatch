@@ -56,7 +56,12 @@ function getBattleTag(data) {
       console.log(data);
       $('#p-login').hide();
       var battletag = data['battletag'];
-      $('#p-battletag').text('Logged in as ' + battletag);
+      $('#p-battletag').html(
+          'Logged in as <b><a href="https://playoverwatch.com/en-us/career/pc/eu/'
+          + battletag
+          + '" target="_blank">'
+          + battletag
+          + '</a></b>');
       setCookie('battletag', battletag, 5);
     }
   });
