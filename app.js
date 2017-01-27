@@ -5,6 +5,14 @@ var _API_PATH = _PROD_SERVER + '/api/get_token/';
 
 $( document ).ready(function() {
     console.log( "ready!" );
+
+    var cookieBattletag = getCookie('battletag');
+    if (cookieBattletag) {
+      $('#p-login').hide();
+      $('#p-battletag').text('Logged in as ' + battletag);
+      return;
+    }
+
     var currentUrl = window.location.href;
     console.log('currentUrl: ' + currentUrl);
     var params = getJsonFromUrl(currentUrl);
@@ -13,10 +21,9 @@ $( document ).ready(function() {
     if (params != null) {
       console.log(params);
       console.log(params['code']);
-
-      var authCode = params['code'];
       // Request the access token.
       if (params['code']) {
+        var authCode = params['code'];
         getAccessToken(authCode);
       }
     }
@@ -48,7 +55,9 @@ function getBattleTag(data) {
       console.log('success: ');
       console.log(data);
       $('#p-login').hide();
-      $('#p-battletag').text('Logged in as ' + data['battletag']);
+      var battletag = data['battletag'];
+      $('#p-battletag').text('Logged in as ' + battletag);
+      setCookie('battletag', battletag, 5);
     }
   });
 }
@@ -62,4 +71,22 @@ function getJsonFromUrl() {
     result[item[0]] = decodeURIComponent(item[1]);
   });
   return result;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
 }
