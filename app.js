@@ -9,9 +9,11 @@ $( document ).ready(function() {
     var cookieBattletag = getCookie('battletag');
     if (cookieBattletag) {
       $('#p-login').hide();
-      $('#p-battletag').text('Logged in as ' + battletag);
+      $('#p-battletag').text('Logged in as ' + cookieBattletag);
       return;
     }
+
+    console.log('No cookie battletag found, going auth legs.');
 
     var currentUrl = window.location.href;
     console.log('currentUrl: ' + currentUrl);
