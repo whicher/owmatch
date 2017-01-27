@@ -67,7 +67,7 @@ function updateUiForLoggedInUser(battletag) {
   $('#p-login').hide();
   $('#p-battletag').html(
       'Logged in as <b><a href="https://playoverwatch.com/en-us/career/pc/eu/'
-      + battletag
+      + battletag.replace('#', '-')
       + '" target="_blank">'
       + battletag
       + '</a></b>');
