@@ -30,13 +30,17 @@ function getAccessToken(authCode) {
       console.log('success: ');
       console.log(data);
       if (data.token_type) {
+        console.log('There is token type, so im requesting battle tag');
         getBattleTag(data);
+      } else {
+        console.log('No token type detected, sry bro.');
       }
     }
   });
 }
 
 function getBattleTag(data) {
+  console.log('Get battle tag for ' + data.access_token);
   $.ajax({
     url: _TOKEN_URL + data.access_token,
     method: 'GET',
