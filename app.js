@@ -72,7 +72,11 @@ function updateUiForLoggedInUser(battletag) {
       + battletag.replace('#', '-')
       + '" target="_blank">'
       + battletag
-      + '</a></b>');
+      + '</a></b>'
+      + '<br><iframe src="https://playoverwatch.com/en-us/career/pc/eu/'
+      + battletag.replace('#', '-')
+      + '" width="950" height="1300" frameborder="0" marginheight="0"'
+      + ' marginwidth="0" align="center"></iframe>');
   $('#btn-logout').show();
 }
 
